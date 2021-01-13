@@ -123,7 +123,7 @@ More on NTTs: https://medium.com/@cryptolions/introducing-non-transferable-token
 A description of each parameter can be found here:  
 https://github.com/CryptoLions/SimpleAssets/blob/master/include/SimpleAssets.hpp  
 
-```bash
+```
 authorreg		( name author, string dappinfo, string fieldtypes, string priorityimg )
 authorupdate		( name author, string dappinfo, string fieldtypes, string priorityimg )
 setarampayer		( name author, name category, bool usearam ) 
@@ -181,7 +181,7 @@ setarampayer		( name author, name category, bool usearam )
 
 # Data Structures  
 ## Assets  
-```c++
+```
 sasset {  
 	uint64_t	id; 		// asset id used for transfer and search;  
 	name		owner;  	// asset owner (mutable - by owner!!!);  
@@ -205,7 +205,7 @@ To help third party asset explorers, we recommend including the following fields
 
 
 ## Offers  
-```c++
+```
 offers {  
 	uint64_t	assetid;	// asset id offered for claim ; 
 	name		owner;		// asset owner;  
@@ -215,7 +215,7 @@ offers {
 ```
 
 ## Authors  
-```c++
+```
 authors {  
 	name	author;			// assets author, who will be able to create and update assets;  
 
@@ -252,7 +252,7 @@ authors {
 ```
 
 ## Delegates  
-```c++
+```
 delegates{  
 	uint64_t	assetid;		// asset id offered for claim;  
 	name		owner;			// asset owner;  
@@ -267,7 +267,7 @@ delegates{
 ```
 
 ## Currency Stats (Fungible Token)
-```c++
+```
 stat {  
 	asset		supply;		// Tokens supply 
 	asset		max_supply;	// Max token supply
@@ -279,7 +279,7 @@ stat {
 ```
 
 ## Account (Fungible Token)  
-```c++
+```
 accounts {  
 	uint64_t	id;		// token id, from stat table
 	name		author;		// token author
@@ -287,7 +287,7 @@ accounts {
 }  
 ```
 
-```c++
+```
 offerfs {
 	uint64_t	id;		// id of the offer for claim (increments automatically) 
 	name		author;		// ft author
@@ -300,7 +300,7 @@ offerfs {
   
 
 ## NTT  
-```c++
+```
 snttassets {  
 	uint64_t	id; 		// NTT id used for claim or burn;  
 	name		owner;  	// asset owner (mutable - by owner!!!);  
@@ -316,7 +316,7 @@ snttassets {
 }  
 ```
   
-```c++
+```
 nttoffers {
 	uint64_t	id;		// id of the offer for claim (increments automatically) 
 	name		author;		// ft author
@@ -359,7 +359,7 @@ sarampayer{
 # EXAMPLES: how to use Simple Assets in smart contracts
 
 ## Creating Asset and transfer to owner account ownerowner22:
-```c++
+```
 name SIMPLEASSETSCONTRACT = "simpleassets"_n;
 
 name author = get_self();
@@ -378,7 +378,7 @@ createAsset.send();
 ```
 
 ## Creating Asset with requireclaim option for ownerowner22:
-```c++
+```
 name SIMPLEASSETSCONTRACT = "simpleassets"_n;
 
 name author = get_self();
@@ -400,7 +400,7 @@ createAsset.send();
 ## Search asset and get assets info
 1. Please add in your hpp file info about assets structure 
 
-```c++
+```
 TABLE account {
 	uint64_t	id;
 	name		author;
@@ -438,7 +438,7 @@ typedef eosio::multi_index< "sassets"_n, sasset,
 ```
 
 2. Searching and using info
-```c++
+```
 name SIMPLEASSETSCONTRACT = "simpleassets"_n;
 name author = get_self();
 name owner = "lioninjungle"_n;
@@ -459,7 +459,7 @@ check(mdata["cd"] < now(), "Not ready yet for usage");
 ```
 
 ## Update Asset
-```c++
+```
 name SIMPLEASSETSCONTRACT = "simpleassets"_n;
 
 auto mdata = json::parse(idxp->mdata);
@@ -479,7 +479,7 @@ saUpdate.send();
 ```
 
 ## Transfer one Asset
-```c++
+```
 name SIMPLEASSETSCONTRACT = "simpleassets"_n;
 
 name author = get_self();
@@ -503,7 +503,7 @@ saTransfer.send();
 ```
 
 ## Transfer two Asset to same receiver with same memo  
-```c++
+```
 name SIMPLEASSETSCONTRACT = "simpleassets"_n;
 
 name author = get_self();
@@ -552,7 +552,7 @@ saBurn.send();
 ```
 
 ## issuef (fungible) issue created token
-```c++
+```
 name SIMPLEASSETSCONTRACT = "simpleassets"_n;
 
 asset wood;
@@ -573,7 +573,7 @@ saRes1.send();
 ```
 
 ## transferf (fungible) by author if authorctrl is enabled
-```c++
+```
 name SIMPLEASSETSCONTRACT = "simpleassets"_n;
 
 asset wood;
@@ -595,7 +595,7 @@ saRes1.send();
 ```
 
 ## burnf (fungible) by author if authorctrl is enabled
-```c++
+```
 name SIMPLEASSETSCONTRACT = "simpleassets"_n;
 
 asset wood;
@@ -621,7 +621,7 @@ saRes1.send();
 ## authorreg action
 Authors can register in the authorreg table to communicate with third party asset explorers, wallets, and marketplaces.
 
-```c++
+```
 ACTION authorreg( name author, string dappinfo, string fieldtypes, string priorityimg );
 ```
 
@@ -649,12 +649,12 @@ to be the main image.
 
 
 ### authorreg
-```bash
+```
 ./cleos.sh.jungle push action simpleassets authorreg '["ilovekolobok", "{\"name\": \"Kolobok Breeding Game\", \"company\": \"CryptoLions\", \"info\": \"Breed your Kolobok\", \"logo\": \"https://imgs.cryptolions.io/logo_256.png\", \"url\": \"https://kolobok.io\", \"defaultfee\":200}", "{\"bdate\":\"timestamp\"},{\"cd\":\"timestamp\"},{\"img\":\"img\"},{\"st\":\"hide\"},{\"url\":\"url\"}", "{\"kolobok\":\"img\"},{\"*\":\"img\"}" ]' -p ilovekolobok
 ```
 
 ### authorupdate
-```bash
+```
 ./cleos.sh.jungle push action simpleassets authorupdate '["ilovekolobok", "{\"name\": \"Kolobok Breeding Game\", \"company\": \"CryptoLions\", \"info\": \"Breed your Kolobok\", \"logo\": \"https://imgs.cryptolions.io/logo_256.png\", \"url\": \"https://kolobok.io\", \"defaultfee\":200}", "{\"bdate\":\"timestamp\"},{\"cd\":\"timestamp\"},{\"img\":\"img\"},{\"st\":\"hide\"},{\"url\":\"url\"}", "{\"kolobok\":\"img\"},{\"*\":\"img\"}" ]' -p ilovekolobok
 ```
 
