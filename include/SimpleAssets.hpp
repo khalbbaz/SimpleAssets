@@ -51,6 +51,7 @@ CONTRACT SimpleAssets : public contract{
 		/*
 		* New Author registration.
 		*
+<<<<<<< HEAD
 		* This action registers a new author account. It is not mandatory.  The information posted helps third party 
 		* asset explorers, wallets, and marketplaces better interact with an author's assets.
 		* 
@@ -114,6 +115,31 @@ CONTRACT SimpleAssets : public contract{
 		* priorityimg is a JSON which assosiates an NFT category with a field name from idata or mdata.  The 
 		* associated field will be used as the main image field for that category of NFT.
 		*
+=======
+		* This action register new author registration. Action is not mandatory.  Markets *may* choose to use information here
+		* to display info about the author, and to follow specifications expressed here for displaying
+		* asset fields.
+		*
+		* @param author is authors account who will create assets.
+		* @param data is stringified json. Recommendations to include: game, company, logo, url, desc.
+		* @param stemplate	is stringified json with key:state values, where key is key from mdata or idata and
+		*		 state indicates recommended way of displaying field:
+		*		 url, img, webgl, mp3, video, hide (ie. don't display), etc.
+		* @param imgpriority is json with assosiation category with tipe of image or video 
+		* Example EOS:img, USD:mp3, KOLOBOK:webglb
+		* types of image
+		* txt		- default
+		* url		- show as clickable URL
+		* img		- link to img file
+		* webgl		- link to webgl file
+		* mp3		- link to mp3 file
+		* video		- link to video file
+		* hide		- do not show
+		* imgb 		- image as string in binary format
+		* webglb	- webgl binary
+		* mp3b 		- mp3 binary
+		* videob 	- video binary
+>>>>>>> parent of 5b24990... fixed regauthor / updateauthor commments
 		*
 		* @return no return value
 		*/
@@ -127,7 +153,29 @@ CONTRACT SimpleAssets : public contract{
 		* the fields dappinfo, fieldtypes, and priorityimg.
 		* To remove author entry, call this action with null strings for dappinfo, fieldtypes, and priorityimg.
 		*
+<<<<<<< HEAD
 		* (See authorreg action for parameter info.)
+=======
+		* @param author	is authors account who will create assets.
+		* @param data is stringified json. Recommendations to include: game, company, logo, url, desc.
+		* @param stemplate is stringified json with key:state values, where key is key from mdata or idata and
+		*		  state indicates recommended way of displaying field:
+		*		  url, img, webgl, mp3, video, hide (ie. don't display), etc.
+		* @param imgpriority is json with assosiation category with tipe of image or video 
+		* Example EOS:img, USD:mp3, KOLOBOK:webglb
+		* types of image
+		* txt		- default
+		* url		- show as clickable URL
+		* img		- link to img file
+		* webgl		- link to webgl file
+		* mp3		- link to mp3 file
+		* video		- link to video file
+		* hide		- do not show
+		* imgb 		- image as string in binary format
+		* webglb	- webgl binary
+		* mp3b 		- mp3 binary
+		* videob 	- video binary
+>>>>>>> parent of 5b24990... fixed regauthor / updateauthor commments
 		*
 		* @return no return value.
 		*/
